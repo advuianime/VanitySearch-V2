@@ -47,7 +47,7 @@ VanitySearch::VanitySearch(Secp256K1* secp, vector<std::string>& inputAddresses,
 	this->maxFound = maxFound;	
 	this->searchType = -1;
 	this->bc = bc;	
-	
+    
 	addresses.clear();
 
 	// Create a 65536 items lookup table
@@ -979,7 +979,7 @@ void VanitySearch::FindKeyGPU(TH_PARAM* ph) {
 			{				
 				fprintf(stdout, "[EXIT] Range search completed \n");	
 				fflush(stdout);
-				//endOfSearch = true;
+				endOfSearch = true;
 
 				counters[thId] += (uint64_t)(STEP_SIZE)*numThreadsGPU; // Point					
 
@@ -1138,14 +1138,14 @@ void VanitySearch::Search(std::vector<int> gpuId, std::vector<int> gridSize) {
 		if (timeout60sec > 2.0) {	
 
 			// Save LowerPrivKey as saveProgress
-			/*saveProgress(params, lastSaveKey, bc);
+			saveProgress(params, lastSaveKey, bc);
 
 			// Reached end of keyspace
 			if (lastSaveKey.IsGreaterOrEqual(&bc->ksFinish)) {
 				endOfSearch = true;
 				fprintf(stdout, "[EXIT] Range search completed \n");	
 				fflush(stdout);
-			}*/
+			}
 
 			timeout60sec = 0.0;
 		}
